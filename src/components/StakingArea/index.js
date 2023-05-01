@@ -272,6 +272,29 @@ export default function MultiplyArea() {
 
     }
   };
+
+  const handleZimaxBalance = async () => {
+
+    try {
+
+     if (!wallet.address) {
+
+      setZimaxValue(0);
+ 
+       return null;
+     }
+     let _ZmzContract = await ZmzContract();
+     console.log('contract---', _ZmzContract);
+     let _getMaxZimax = await _ZmzContract.balanceOf(wallet.address);
+     console.log('val', _getMaxZimax.toString());
+     console.log('getetet', (_getMaxZimax.toString() / 10 ** 18));
+     setZimaxValue((_getMaxZimax.toString() / 10 ** 18).toFixed(5));
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleUnstakeZimax = async (val) => {
     try {
      console.log(val);
